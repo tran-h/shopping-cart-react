@@ -1,17 +1,17 @@
-import "./NavBar.css";
+import styles from "./NavBar.module.css";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
 export default function NavBar() {
   return (
     <>
-      <div className="navbar">
-        <div className="navbar-left">
-          <NavLink to="/" className="logo">
+      <div className={styles.navbar}>
+        <div className={styles.navbarLeft}>
+          <NavLink to="/" className={styles.logo}>
             Shopping Cart App
           </NavLink>
         </div>
-        <div className="navbar-right">
-          <ul className="nav-links">
+        <div className={styles.navbarRight}>
+          <ul className={styles.navLinks}>
             <li>
               <Link to="/">Home</Link>
             </li>
