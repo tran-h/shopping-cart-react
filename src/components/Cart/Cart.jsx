@@ -1,6 +1,6 @@
-import styles from "./Shop.module.css";
+import styles from "./Cart.module.css";
 
-export default function Shop() {
+export default function Cart() {
   return (
     <div>
       <h1>Shopping Cart</h1>

@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import Shop from "./Shop";
+import Cart from "./Cart";
 
-describe("Shop Component", () => {
-  it("renders the Shop page correctly", () => {
-    render(<Shop />);
+describe("Cart Component", () => {
+  it("renders the Cart page correctly", () => {
+    render(<Cart />);
 
     expect(screen.getByText("Shopping Cart")).toBeInTheDocument();
     expect(screen.getByText("Your cart is empty.")).toBeInTheDocument();

@@ -1,7 +1,7 @@
 import styles from "./NavBar.module.css";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-export default function NavBar() {
+export default function NavBar({ totalQty }) {
   return (
     <>
       <div className={styles.navbar}>
@@ -19,12 +19,11 @@ export default function NavBar() {
               <Link to="/products">Products</Link>
             </li>
             <li>
-              <Link to="/shop">Shop</Link>
+              <Link to="/cart">Cart ({totalQty})</Link>
             </li>
           </ul>
         </div>
       </div>
-      <Outlet />
     </>
   );
 }

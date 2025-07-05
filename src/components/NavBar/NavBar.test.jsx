@@ -14,6 +14,6 @@ describe("NavBar Component", () => {
     expect(screen.getByText("Shopping Cart App")).toBeInTheDocument();
     expect(screen.getByText("Home")).toBeInTheDocument();
     expect(screen.getByText("Products")).toBeInTheDocument();
-    expect(screen.getByText("Shop")).toBeInTheDocument();
+    expect(screen.getByText("Cart ()")).toBeInTheDocument();
   });
 });
