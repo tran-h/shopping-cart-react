@@ -26,7 +26,7 @@ export default function Layout() {
   return (
     <>
       <NavBar totalQty={totalQty} />
-      <Outlet context={{ addToCart }} />
+      <Outlet context={{ cart, setCart, addToCart  }} />
     </>
   );
 }

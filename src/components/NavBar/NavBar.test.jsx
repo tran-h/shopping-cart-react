@@ -3,17 +3,18 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import NavBar from "./NavBar";
 
-describe("NavBar Component", () => {
-  it("renders the NavBar page correctly", () => {
+describe("NavBar", () => {
+  it("renders all navigation links and shows cart count", () => {
     render(
       <MemoryRouter>
-        <NavBar />
+        <NavBar totalQty={3} />
       </MemoryRouter>
     );
 
-    expect(screen.getByText("Shopping Cart App")).toBeInTheDocument();
-    expect(screen.getByText("Home")).toBeInTheDocument();
-    expect(screen.getByText("Products")).toBeInTheDocument();
-    expect(screen.getByText("Cart ()")).toBeInTheDocument();
+    expect(screen.getByText(/shopping cart app/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /home/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /products/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /shop/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /cart \(3\)/i })).toBeInTheDocument();
   });
 });

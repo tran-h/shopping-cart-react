@@ -1,0 +1,113 @@
+.container {
+  min-height: 100vh;
+  background: url(../../assets/images/background.jpeg) no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+}
+
+.cartContent {
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cartList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cartItem {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.cartImage {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.cartDetails {
+  flex: 1;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.qtyBox {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.qtyBox input {
+  width: 50px;
+  text-align: center;
+}
+
+.qtyBox button {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.qtyBox button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.lineTotal {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+.removeBtn {
+  background: transparent;
+  border: none;
+  color: #d00;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.total {
+  text-align: right;
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.shopLink {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #333;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.shopLink:hover {
+  background: #555;
+}

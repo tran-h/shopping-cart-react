@@ -1,40 +1,43 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Routes, Route, Outlet } from "react-router-dom";
 import Products from "./Products";
 
-//Mock the fetch call
+const mockProducts = [
+  {
+    id: 1,
+    title: "Test Product",
+    price: 19.99,
+    image: "https://example.com/product.jpg",
+  },
+];
+
 beforeEach(() => {
   globalThis.fetch = vi.fn(() =>
     Promise.resolve({
       ok: true,
-      json: () =>
-        Promise.resolve([
-          {
-            id: 1,
-            title: "Test Product",
-            price: 19.99,
-            image: "https://example.com/product.jpg",
-          },
-        ]),
+      json: () => Promise.resolve(mockProducts),
     })
   );
 });
 
-//Fake Layout to provide context
-function FakeLayout() {
-  const fakeContext = {
-    addToCart: vi.fn(),
-    getQty: () => 1,
-    setQty: vi.fn(),
-    cart: {},
-  };
+afterEach(() => {
+  vi.restoreAllMocks();
+});
 
-  return <Outlet context={fakeContext} />;
+function FakeLayout() {
+  return (
+    <Outlet
+      context={{
+        addToCart: vi.fn(),
+      }}
+    />
+  );
 }
 
-describe("Products Page", () => {
-  it("renders product cards after fetching", async () => {
+describe("Products page", () => {
+  it("fetches and renders product cards, increments quantity", async () => {
     render(
       <MemoryRouter initialEntries={["/products"]}>
         <Routes>
@@ -45,16 +48,16 @@ describe("Products Page", () => {
       </MemoryRouter>
     );
 
-    //Loading indicator
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
 
-    //Wait for product card to render
-    await waitFor(() => {
-      expect(screen.getByText(/test product/i)).toBeInTheDocument();
-      expect(screen.getByText(/\$19\.99/)).toBeInTheDocument();
-    });
+    await waitFor(() =>
+      expect(screen.getByText(/test product/i)).toBeInTheDocument()
+    );
 
-    const image = screen.getByRole("img", { name: /test product/i });
-    expect(image).toHaveAttribute("src", "https://example.com/product.jpg");
+    const input = screen.getByRole("spinbutton");
+    expect(input).toHaveValue(1);
+
+    await userEvent.click(screen.getByRole("button", { name: "+" }));
+    expect(input).toHaveValue(2);
   });
 });

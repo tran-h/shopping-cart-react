@@ -40,50 +40,45 @@ export default function Products() {
   return (
     <div className={styles.container}>
       <ul className={styles.cardContainer}>
-      {data.map((product) => (
-        <li className={styles.cards} key={product.id}>
-          <div className={styles.cardContent}>
-            <img src={product.image} alt={product.title} />
-            <h3>{product.title}</h3>
-          </div>
-
-          <div className={styles.cardFooter}>
-            <p className={styles.price}>${product.price}</p>
-
-            <div className={styles.controls}>
-              <button
-                onClick={() => dec(product.id)}
-                disabled={getQty(product.id) <= MIN}
-              >
-                –
-              </button>
-
-              <input
-                type="number"
-                min={MIN}
-                max={MAX}
-                value={getQty(product.id)}
-                onChange={(e) => setOne(product.id, +e.target.value || MIN)}
-              />
-
-              <button
-                onClick={() => inc(product.id)}
-                disabled={getQty(product.id) >= MAX}
-              >
-                +
-              </button>
-
-              <button
-                className={styles.addToCart}
-                onClick={() => addToCart(product, getQty(product.id))}
-              >
-                Add to Cart
-              </button>
+        {data.map((product) => (
+          <li className={styles.cards} key={product.id}>
+            <div className={styles.cardContent}>
+              <img src={product.image} alt={product.title} />
+              <h3>{product.title}</h3>
             </div>
-          </div>
-        </li>
-      ))}
-    </ul>
+            <div className={styles.cardFooter}>
+              <p className={styles.price}>${product.price.toFixed(2)}</p>
+              <div className={styles.controls}>
+                <button
+                  onClick={() => dec(product.id)}
+                  disabled={getQty(product.id) <= MIN}
+                >
+                  –
+                </button>
+                <input
+                  type="number"
+                  min={MIN}
+                  max={MAX}
+                  value={getQty(product.id)}
+                  onChange={(e) => setOne(product.id, +e.target.value || MIN)}
+                />
+                <button
+                  onClick={() => inc(product.id)}
+                  disabled={getQty(product.id) >= MAX}
+                >
+                  +
+                </button>
+                <button
+                  className={styles.addToCart}
+                  onClick={() => addToCart(product, getQty(product.id))}
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
